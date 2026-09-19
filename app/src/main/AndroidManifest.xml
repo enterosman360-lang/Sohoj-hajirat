@@ -7,7 +7,7 @@
         android:usesCleartextTraffic="false">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.sohojhajirat.app.MainActivity"
             android:exported="true">
 
             <intent-filter>
