@@ -73,6 +73,7 @@ function requestCode(){return hashCode('REQ|'+DEVICE_ID+'|SOHOJ-HAJIRAT').slice(
 function deviceCode(id){return hashCode(OWNER_PIN+'|PIN|'+id+'|SOHOJ-HAJIRAT').slice(0,10)}
 function activateApp(){let p=(pinInput.value||'').trim().toUpperCase();let expected=deviceCode(DEVICE_ID);if(p===expected){localStorage.setItem('hajirat_activation','1');localStorage.setItem('hajirat_device',DEVICE_ID);lockScreen.style.display='none'}else pinMsg.textContent='PIN সঠিক নয়। নিজের বানানো বা অন্য ডিভাইসের PIN গ্রহণ করা হবে না। সঠিক PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করুন।'}function ownerActivateApp(){
     let p=prompt('পরিচালকের PIN দিন');
+
     if(p===OWNER_PIN){
         localStorage.setItem('hajirat_activation','1');
         localStorage.setItem('hajirat_device',DEVICE_ID);
@@ -81,24 +82,17 @@ function activateApp(){let p=(pinInput.value||'').trim().toUpperCase();let expec
     }else if(p!==null){
         alert('পরিচালকের PIN সঠিক নয়।');
     }
-}
-function ownerPanel() function ownerActivateApp(){function ownerPanel(){
-    ...
 }
 
-function ownerActivateApp(){
-    ...
-}
+function ownerPanel(){
     let p=prompt('পরিচালকের PIN দিন');
+
     if(p===OWNER_PIN){
-        localStorage.setItem('hajirat_activation','1');
-        localStorage.setItem('hajirat_device',DEVICE_ID);
-        lockScreen.style.display='none';
-        alert('মালিকের ডিভাইস সফলভাবে সক্রিয় হয়েছে।');
+        ownerBox.classList.remove('hide');
     }else if(p!==null){
         alert('পরিচালকের PIN সঠিক নয়।');
     }
-}let p=prompt('পরিচালকের PIN দিন');if(p===OWNER_PIN){ownerBox.classList.remove('hide')}else if(p!==null){alert('পরিচালকের PIN সঠিক নয়।')}}
+}
 function generateUserPin(){let id=(requestCode.value||'').trim().toUpperCase();if(!id){deviceCodeOut.innerHTML='<span class="note">প্রথমে ব্যবহারকারীর ডিভাইস আবেদন কোড লিখুন।</span>';deviceCodeOut.classList.remove('hide');return}let pin=deviceCode(id);deviceCodeOut.innerHTML='<b>ব্যবহারকারীকে দেওয়ার PIN:</b><br><span class="big">'+pin+'</span><br><span class="note">এই PIN শুধু ওই আবেদন কোডের ডিভাইসে কাজ করবে। নিজের থেকে বানানো PIN কাজ করবে না।</span>';deviceCodeOut.classList.remove('hide')}
 function shareApp(){let text='সহজ হাজিরাত — রুক‌ইয়াহ ও তদবির সহায়ক\n'+APP_SHARE_LINK;if(window.AndroidShare&&AndroidShare.share)AndroidShare.share(text);else if(navigator.share)navigator.share({title:'সহজ হাজিরাত',text:'সহজ হাজিরাত অ্যাপ',url:APP_SHARE_LINK}).catch(()=>{});else{navigator.clipboard?.writeText(APP_SHARE_LINK);alert('অ্যাপের শেয়ার লিংক কপি হয়েছে: '+APP_SHARE_LINK)}}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
