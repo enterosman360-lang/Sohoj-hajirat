@@ -32,9 +32,9 @@
 কুরআনিক চিকিৎসক,
 রাক্বি ও মুদাব্বির মুফ্তী উসমান গণি,<br> সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p></div></section>
 </div>
-<div id="lockScreen" class="lockscreen"><div class="lockcard"><img class="locklogo" src="sohoj_hajirat_icon.png"><h2>🔐 সহজ হাজিরাত</h2><p>এই অ্যাপ ব্যবহারের জন্য <b>প্রত্যেক ডিভাইসের আলাদা PIN</b> লাগবে। একই PIN অন্য ডিভাইসে কাজ করবে না। PIN নিতে যোগাযোগ করুন:</p><p><b>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</b><br>পরিচালক, কুরআনিক চিকিৎসক, রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><p class="formula"><b>আপনার ডিভাইসের আবেদন কোড:</b><br><span class="big" id="requestCodeOut">—</span><br><span class="note">এই কোডটি পরিচালককে WhatsApp/ফোনে পাঠান। পরিচালক আপনার জন্য PIN দেবেন।</span></p><input id="pinInput" type="password" maxlength="64" placeholder="পরিচালকের দেওয়া PIN লিখুন"><button class="btn primary" onclick="activateApp()">অ্যাক্টিভেট করুন</button><p id="pinMsg" class="note"></p></div></div>
+<div id="lockScreen" class="lockscreen"><div class="lockcard"><img class="locklogo" src="sohoj_hajirat_icon.png"><h2>🔐 সহজ হাজিরাত</h2><p>এই অ্যাপ ব্যবহারের জন্য <b>প্রত্যেক ডিভাইসের আলাদা PIN</b> লাগবে। একই PIN অন্য ডিভাইসে কাজ করবে না। PIN নিতে যোগাযোগ করুন:</p><p><b>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</b><br>পরিচালক, কুরআনিক চিকিৎসক, রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><p class="formula"><b>আপনার ডিভাইসের আবেদন কোড:</b><br><span class="big" id="requestCodeOut">—</span><br><span class="note">এই কোডটি পরিচালককে WhatsApp/ফোনে পাঠান। পরিচালক আপনার জন্য PIN দেবেন।</span></p><input id="pinInput" type="password" maxlength="64" placeholder="পরিচালকের দেওয়া PIN লিখুন"><button class="btn gold" onclick="ownerActivateApp()">🔐 মালিক হিসেবে সক্রিয় করুন</button>  <button class="btn primary" onclick="activateApp()">অ্যাক্টিভেট করুন</button><p id="pinMsg" class="note"></p></div></div>
 <nav class="bottom"><button onclick="go('home')">🏠<br>হোম</button><button onclick="go('calc')">🧮<br>হিসাব</button><button onclick="go('history')">📚<br>ইতিহাস</button><button onclick="go('about')">ℹ️<br>তথ্য</button></nav>
-<script>
+<script><button class="btn gold" onclick="ownerActivateApp()">🔐 মালিক হিসেবে সক্রিয় করুন</button>
 const A={'ا':1,'أ':1,'إ':1,'آ':1,'ء':1,'ب':2,'ج':3,'د':4,'ه':5,'ة':5,'و':6,'ز':7,'ح':8,'ط':9,'ي':10,'ى':10,'ك':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000};
 const C={459:['قمر','সোমবার'],645:['مریخ','মঙ্গলবার'],941:['عطارد','বুধবার'],1416:['مشتري','বৃহস্পতিবার'],593:['زهره','শুক্রবার'],777:['زحل','শনিবার'],1164:['شمس','রবিবার']};
 const F={1:'জিন',2:'যাদু',3:'বদনজর',4:'তাবিজ পুতানো / আম্মার জিন',5:'চালানের',6:'দেওয়ের নজর',0:'শারীরিক সমস্যা'};
@@ -71,8 +71,34 @@ const DEVICE_ID=(window.AndroidDevice&&AndroidDevice.getDeviceId)?AndroidDevice.
 function hashCode(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36).toUpperCase()}
 function requestCode(){return hashCode('REQ|'+DEVICE_ID+'|SOHOJ-HAJIRAT').slice(0,10)}
 function deviceCode(id){return hashCode(OWNER_PIN+'|PIN|'+id+'|SOHOJ-HAJIRAT').slice(0,10)}
-function activateApp(){let p=(pinInput.value||'').trim().toUpperCase();let expected=deviceCode(DEVICE_ID);if(p===expected){localStorage.setItem('hajirat_activation','1');localStorage.setItem('hajirat_device',DEVICE_ID);lockScreen.style.display='none'}else pinMsg.textContent='PIN সঠিক নয়। নিজের বানানো বা অন্য ডিভাইসের PIN গ্রহণ করা হবে না। সঠিক PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করুন।'}
-function ownerPanel(){let p=prompt('পরিচালকের PIN দিন');if(p===OWNER_PIN){ownerBox.classList.remove('hide')}else if(p!==null){alert('পরিচালকের PIN সঠিক নয়।')}}
+function activateApp(){let p=(pinInput.value||'').trim().toUpperCase();let expected=deviceCode(DEVICE_ID);if(p===expected){localStorage.setItem('hajirat_activation','1');localStorage.setItem('hajirat_device',DEVICE_ID);lockScreen.style.display='none'}else pinMsg.textContent='PIN সঠিক নয়। নিজের বানানো বা অন্য ডিভাইসের PIN গ্রহণ করা হবে না। সঠিক PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করুন।'}function ownerActivateApp(){
+    let p=prompt('পরিচালকের PIN দিন');
+    if(p===OWNER_PIN){
+        localStorage.setItem('hajirat_activation','1');
+        localStorage.setItem('hajirat_device',DEVICE_ID);
+        lockScreen.style.display='none';
+        alert('মালিকের ডিভাইস সফলভাবে সক্রিয় হয়েছে।');
+    }else if(p!==null){
+        alert('পরিচালকের PIN সঠিক নয়।');
+    }
+}
+function ownerPanel() function ownerActivateApp(){function ownerPanel(){
+    ...
+}
+
+function ownerActivateApp(){
+    ...
+}
+    let p=prompt('পরিচালকের PIN দিন');
+    if(p===OWNER_PIN){
+        localStorage.setItem('hajirat_activation','1');
+        localStorage.setItem('hajirat_device',DEVICE_ID);
+        lockScreen.style.display='none';
+        alert('মালিকের ডিভাইস সফলভাবে সক্রিয় হয়েছে।');
+    }else if(p!==null){
+        alert('পরিচালকের PIN সঠিক নয়।');
+    }
+}let p=prompt('পরিচালকের PIN দিন');if(p===OWNER_PIN){ownerBox.classList.remove('hide')}else if(p!==null){alert('পরিচালকের PIN সঠিক নয়।')}}
 function generateUserPin(){let id=(requestCode.value||'').trim().toUpperCase();if(!id){deviceCodeOut.innerHTML='<span class="note">প্রথমে ব্যবহারকারীর ডিভাইস আবেদন কোড লিখুন।</span>';deviceCodeOut.classList.remove('hide');return}let pin=deviceCode(id);deviceCodeOut.innerHTML='<b>ব্যবহারকারীকে দেওয়ার PIN:</b><br><span class="big">'+pin+'</span><br><span class="note">এই PIN শুধু ওই আবেদন কোডের ডিভাইসে কাজ করবে। নিজের থেকে বানানো PIN কাজ করবে না।</span>';deviceCodeOut.classList.remove('hide')}
 function shareApp(){let text='সহজ হাজিরাত — রুক‌ইয়াহ ও তদবির সহায়ক\n'+APP_SHARE_LINK;if(window.AndroidShare&&AndroidShare.share)AndroidShare.share(text);else if(navigator.share)navigator.share({title:'সহজ হাজিরাত',text:'সহজ হাজিরাত অ্যাপ',url:APP_SHARE_LINK}).catch(()=>{});else{navigator.clipboard?.writeText(APP_SHARE_LINK);alert('অ্যাপের শেয়ার লিংক কপি হয়েছে: '+APP_SHARE_LINK)}}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
