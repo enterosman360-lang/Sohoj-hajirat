@@ -9,50 +9,49 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class MainActivity extends Activity {
+    private WebView webView;
 
-    @Override
-    public void onCreate(Bundle b) {
+    @Override public void onCreate(Bundle b) {
         super.onCreate(b);
-
-        WebView w = new WebView(this);
-        WebSettings s = w.getSettings();
-
+        webView = new WebView(this);
+        WebSettings s = webView.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(true);
 
-        w.addJavascriptInterface(new ShareBridge(), "AndroidShare");
-        w.addJavascriptInterface(new DeviceBridge(), "AndroidDevice");
+        webView.addJavascriptInterface(new ShareBridge(), "AndroidShare");
+        webView.addJavascriptInterface(new DeviceBridge(), "AndroidDevice");
 
-        w.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/index.html");
+        setContentView(webView);
+    }
 
-        setContentView(w);
+    @Override public void onBackPressed() {
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public class DeviceBridge {
-
         @JavascriptInterface
         public String getDeviceId() {
             return Settings.Secure.getString(
-                    getContentResolver(),
-                    Settings.Secure.ANDROID_ID
+                getContentResolver(),
+                Settings.Secure.ANDROID_ID
             );
         }
     }
 
     public class ShareBridge {
-
         @JavascriptInterface
         public void share(String text) {
             Intent send = new Intent(Intent.ACTION_SEND);
             send.setType("text/plain");
             send.putExtra(Intent.EXTRA_TEXT, text);
-
             startActivity(
-                    Intent.createChooser(
-                            send,
-                            "সহজ হাজিরাত শেয়ার করুন"
-                    )
+                Intent.createChooser(send, "সহজ হাজিরাত শেয়ার করুন")
             );
         }
     }
