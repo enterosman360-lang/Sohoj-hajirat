@@ -18,69 +18,339 @@
 
 <section id="calc" class="hide"><div class="card"><h2>🧮 ১. রোগ নির্ণয় / হাজিরাত হিসাব</h2><p class="note">আবজাদ + সেতারা + বয়স + তারিখ = মোট। এরপর মোটকে ৭ দিয়ে ভাগ করে ভাগশেষ অনুযায়ী ফলাফল দেখানো হবে।</p><div class="grid"><div><label>রোগীর নাম</label><input id="cp" placeholder="বাংলা / English / عربي / اردو — যেকোনো ভাষায়"></div><div><label>মায়ের নাম</label><input id="cm" placeholder="বাংলা / English / عربي / اردو — যেকোনো ভাষায়"></div><div><label>বর্তমান বয়স</label><input id="cage" type="number" min="0"></div><div><label>হিসাবের তারিখ</label><input id="cdate" type="date"></div></div><label>সেতারা নির্বাচন</label><select id="setara"><option value="459">সোমবার — قمر — ৪৫৯</option><option value="645">মঙ্গলবার — مریخ — ৬৪৫</option><option value="941">বুধবার — عطارد — ৯৪১</option><option value="1416">বৃহস্পতিবার — مشتری — ১৪১৬</option><option value="593">শুক্রবার — زهره — ৫৯৩</option><option value="777">শনিবার — زحل — ৭৭৭</option><option value="1164">রবিবার — شمس — ১১৬৪</option></select><button class="btn primary" onclick="calc()">হিসাব করুন</button><p id="setaraHint" class="note"></p><div id="res" class="card result hide"></div></div></section>
 
-<section id="mood" class="hide"><div class="card"><h2>❤️ ২. মেজাজ / মোহাব্বত-বিচ্ছেদ</h2><p class="note">এটি প্রথম ক্যালকুলেটর থেকে সম্পূর্ণ আলাদা। এখানে ৭ দিয়ে ভাগ বা ভাগশেষ নেই। মেজাজের হরফ-গ্রুপই মূল ভিত্তি।</p><div class="grid"><div><label>আশেকের নাম</label><input id="n1" placeholder="বাংলা / English / عربي / اردو"></div><div><label>আশেকের মেজাজ নির্বাচন</label><select id="sel1"><option value="">অটো নির্ধারণ</option><option>আতশী</option><option>বাদী</option><option>আবী</option><option>খাকী</option></select></div><div><label>মাশুকের নাম</label><input id="n2" placeholder="বাংলা / English / عربي / اردو"></div><div><label>মাশুকের মেজাজ নির্বাচন</label><select id="sel2"><option value="">অটো নির্ধারণ</option><option>আতশী</option><option>বাদী</option><option>আবী</option><option>খাকী</option></select></div></div><button class="btn primary" onclick="moodCalc()">ফলাফল দেখুন</button><div id="moodres" class="card result hide"></div></div><div class="card"><h2>মেজাজের হরফ</h2><p>🔥 <b>আতশী:</b> ا ه ط م ف ش ذ</p><p>🌬️ <b>বাদী:</b> ب و ي ن ص ت ض</p><p>💧 <b>আবী:</b> ج ز ك س ق ث ظ</p><p>🌍 <b>খাকী:</b> د ح ل ع ر خ غ</p></div></section>
+<section id="mood" class="hide"><div class="card"><h2>❤️ ২. মেজাজ / মোহাব্বত-বিচ্ছেদ</h2><p class="note">এটি প্রথম ক্যালকুলেটর থেকে সম্পূর্ণ আলাদা। এখানে ৭ দিয়ে ভাগ বা ভাগশেষ নেই। মেজাজের হরফ-গ্রুপই মূল ভিত্তি।</p><div class="grid"><div><label>প্রথম ব্যক্তির নাম</label><input id="n1" placeholder="বাংলা / English / عربي / اردو"></div><div><label>প্রথম ব্যক্তির মেজাজ নির্বাচন</label><select id="sel1"><option value="">অটো নির্ধারণ</option><option>আতশী</option><option>বায়ী/বাদী</option><option>আবী</option><option>খাকী</option></select></div><div><label>দ্বিতীয় ব্যক্তির নাম</label><input id="n2" placeholder="বাংলা / English / عربي / اردو"></div><div><label>দ্বিতীয় ব্যক্তির মেজাজ নির্বাচন</label><select id="sel2"><option value="">অটো নির্ধারণ</option><option>আতশী</option><option>বায়ী/বাদী</option><option>আবী</option><option>খাকী</option></select></div></div><button class="btn primary" onclick="moodCalc()">হিসাব করুন</button><div id="moodres" class="card result hide"></div></div><div class="card"><h2>মেজাজের হরফ</h2><p>🔥 <b>আতশী:</b> ا ه ط م ف ش ذ</p><p>🌬️ <b>বায়ী/বাদী:</b> ب و ي ن ص ت ض</p><p>💧 <b>আবী:</b> ج ز ك س ق ث ظ</p><p>🌍 <b>খাকী:</b> د ح ل ع ر خ غ</p></div></section>
 
 <section id="history" class="hide"><div class="card"><h2>📚 পূর্বের হিসাব / ইতিহাস</h2><div id="hist">কোনো হিসাব সংরক্ষিত নেই।</div><button class="btn danger" onclick="clearHistory()">ইতিহাস মুছুন</button></div></section>
 
 <section id="report" class="hide"><div class="card"><h2>🖨️ রিপোর্ট / PDF</h2><p>সর্বশেষ হিসাবটি এখানে দেখা যাবে এবং Print / Save as PDF করা যাবে।</p><div id="reportBox" class="result card">এখনো কোনো হিসাব করা হয়নি।</div><button class="btn primary" onclick="window.print()">Print / Save as PDF</button></div></section>
-
-<section id="about" class="hide"><div class="card"><h2>ℹ️ অ্যাপের তথ্য ও পরিচয়</h2><p><b>সহজ হাজিরাত</b><br>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</p><p><b>পরিচালক:</b><br>কুরআনিক চিকিৎসক রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><button class="btn primary" onclick="shareApp()">🔗 অ্যাপ শেয়ার করুন</button><button class="btn gold" onclick="ownerPanel()">🔐 পরিচালকের PIN / নতুন ডিভাইস সক্রিয়করণ</button><div id="ownerBox" class="card hide"><h3>পরিচালক নিয়ন্ত্রণ</h3><p class="note">এই অংশ শুধু পরিচালকের জন্য। ব্যবহারকারী তার ডিভাইসের আবেদন কোড দিলে আপনি তার জন্য আলাদা PIN তৈরি করে দিতে পারবেন। আপনার পরিচালকের PIN কাউকে দেবেন না।</p><label>ব্যবহারকারীর দেওয়া ডিভাইস আবেদন কোড</label><input id="requestCode" maxlength="32" placeholder="যেমন: A1B2C3D4E5"><button class="btn primary" onclick="generateUserPin()">ব্যবহারকারীর PIN তৈরি করুন</button><div id="deviceCodeOut" class="formula hide"></div></div><p class="note">শেয়ার লিংক: <b>https://play.google.com/store/apps/details?id=com.sohojhajirat.app</b></p></div>
-<div class="card"><h2>🌿 মেজাজের হরফ</h2><p>🔥 <b>আতশী:</b> <span class="arabicLetters">ا ه ط م ف ش ذ</span></p><p>🌬️ <b>বাদী:</b> <span class="arabicLetters">ب و ي ن ص ت ض</span></p><p>💧 <b>আবী:</b> <span class="arabicLetters">ج ز ك س ق ث ظ</span></p><p>🌍 <b>খাকী:</b> <span class="arabicLetters">د ح ل ع ر خ غ</span></p></div>
+<section id="about" class="hide"><div class="card"><h2>ℹ️ অ্যাপের তথ্য ও পরিচয়</h2><p><b>সহজ হাজিরাত</b><br>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</p><p><b>পরিচালক:</b><br>রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><button class="btn primary" onclick="shareApp()">🔗 অ্যাপ শেয়ার করুন</button><button class="btn gold" onclick="ownerPanel()">🔐 পরিচালকের PIN / নতুন ডিভাইস সক্রিয়করণ</button><div id="ownerBox" class="card hide"><h3>পরিচালক নিয়ন্ত্রণ</h3><p class="note">এই অংশ শুধু পরিচালকের জন্য। ব্যবহারকারী তার ডিভাইসের আবেদন কোড দিলে আপনি তার জন্য আলাদা PIN তৈরি করে দিতে পারবেন। আপনার পরিচালকের PIN কাউকে দেবেন না।</p><label>ব্যবহারকারীর দেওয়া ডিভাইস আবেদন কোড</label><input id="requestCode" maxlength="32" placeholder="যেমন: A1B2C3D4E5"><button class="btn primary" onclick="generateUserPin()">ব্যবহারকারীর PIN তৈরি করুন</button><div id="deviceCodeOut" class="formula hide"></div></div><p class="note">শেয়ার লিংক: <b>https://play.google.com/store/apps/details?id=com.sohojhajirat.app</b></p></div>
+<div class="card"><h2>🌿 মেজাজের হরফ</h2><p>🔥 <b>আতশী:</b> <span class="arabicLetters">ا ه ط م ف ش ذ</span></p><p>🌬️ <b>বায়ী/বাদী:</b> <span class="arabicLetters">ب و ي ن ص ت ض</span></p><p>💧 <b>আবী:</b> <span class="arabicLetters">ج ز ك س ق ث ظ</span></p><p>🌍 <b>খাকী:</b> <span class="arabicLetters">د ح ل ع ر خ غ</span></p></div>
 <div class="card"><h2>⭐ ৫. সেতারা হিসাব</h2><table><tr><th>বার</th><th>সেতারা</th><th>সংখ্যা</th></tr><tr><td>সোমবার</td><td>قمر</td><td>৪৫৯</td></tr><tr><td>মঙ্গলবার</td><td>مریخ</td><td>৬৪৫</td></tr><tr><td>বুধবার</td><td>عطارد</td><td>৯৪১</td></tr><tr><td>বৃহস্পতিবার</td><td>مشتري</td><td>১৪১৬</td></tr><tr><td>শুক্রবার</td><td>زهره</td><td>৫৯৩</td></tr><tr><td>শনিবার</td><td>زحل</td><td>৭৭৭</td></tr><tr><td>রবিবার</td><td>شمس</td><td>১১৬৪</td></tr></table></div>
 <div class="card"><h2>📋 ভাগশেষের ফলাফল</h2><p>১ — জিন</p><p>২ — যাদু</p><p>৩ — বদনজর</p><p>৪ — তাবিজ পুতানো / আম্মার জিন</p><p>৫ — চালানের</p><p>৬ — দেওয়ের নজর</p><p>৭ বা ০ — শারীরিক সমস্যা</p><div class="formula"><b>গুরুত্বপূর্ণ:</b> ৭৩৭ কোনো বিয়োগের সংখ্যা নয়। ৭৩৭ কেবল কোনো হিসাবের মোট যোগফলের উদাহরণ হতে পারে।</div></div>
-<div class="card"><h2>📱 ব্যবহার সংক্রান্ত তথ্য</h2><p class="note">মূল হিসাব অফলাইন/ডাটা ছাড়াই চালানোর জন্য তৈরি। নতুন ব্যবহারকারীকে অ্যাপ চালাতে ব্যবহারের PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করতে হবে।</p><p><b>যোগাযোগ:</b><br>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার<br>পরিচালক, কুরআনিক চিকিৎসক রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p></div></section>
+<div class="card"><h2>📱 ব্যবহার সংক্রান্ত তথ্য</h2><p class="note">মূল হিসাব অফলাইন/ডাটা ছাড়াই চালানোর জন্য তৈরি। নতুন ব্যবহারকারীকে অ্যাপ চালাতে ব্যবহারের PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করতে হবে।</p><p><b>যোগাযোগ:</b><br>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার<br>পরিচালক, রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p></div></section>
 </div>
-<div id="lockScreen" class="lockscreen"><div class="lockcard"><img class="locklogo" src="sohoj_hajirat_icon.png"><h2>🔐 সহজ হাজিরাত</h2><p>এই অ্যাপ ব্যবহারের জন্য <b>প্রত্যেক ডিভাইসের আলাদা PIN</b> লাগবে। একই PIN অন্য ডিভাইসে কাজ করবে না। PIN নিতে যোগাযোগ করুন:</p><p><b>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</b><br>পরিচালক, কুরআনিক চিকিৎসক রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><p class="formula"><b>আপনার ডিভাইসের আবেদন কোড:</b><br><span class="big" id="requestCodeOut">—</span><br><span class="note">এই কোডটি পরিচালককে WhatsApp/ফোনে পাঠান। পরিচালক আপনার জন্য PIN দেবেন।</span></p><input id="pinInput" type="password" maxlength="64" placeholder="পরিচালকের দেওয়া PIN লিখুন"><button class="btn primary" onclick="activateApp()">অ্যাক্টিভেট করুন</button><p id="pinMsg" class="note"></p><button class="btn gold" onclick="ownerPanel()">🔐 মালিক হিসেবে সক্রিয় করুন</button><div id="lockOwnerBox" class="card hide" style="text-align:left;margin-top:12px"><h3 style="color:#0b6044">🔐 মালিক অ্যাক্টিভেশন</h3><p class="note">এটি শুধু অ্যাপের মালিক/পরিচালকের জন্য। মালিকের PIN দিন।</p><input id="ownerPinInput" type="password" maxlength="64" placeholder="মালিকের PIN লিখুন"><button class="btn primary" onclick="activateOwner()">মালিক হিসেবে অ্যাক্টিভেট করুন</button><p id="ownerMsg" class="note"></p><hr><p class="note">এই ডিভাইসের আবেদন কোড:</p><input id="ownerRequestCode" readonly><button class="btn soft" onclick="copyRequestCode()">📋 আবেদন কোড কপি করুন</button><p class="note">অন্য ব্যবহারকারীর আবেদন কোড দিলে তার PIN তৈরি করা যাবে:</p><input id="userCodeInput" maxlength="32" placeholder="ব্যবহারকারীর আবেদন কোড লিখুন"><button class="btn primary" onclick="generateLockUserPin()">ব্যবহারকারীর PIN তৈরি করুন</button><div id="lockPinOut" class="formula hide"></div></div></div></div>
+<div id="lockScreen" class="lockscreen"><div class="lockcard"><img class="locklogo" src="sohoj_hajirat_icon.png"><h2>🔐 সহজ হাজিরাত</h2><p>এই অ্যাপ ব্যবহারের জন্য <b>প্রত্যেক ডিভাইসের আলাদা PIN</b> লাগবে। একই PIN অন্য ডিভাইসে কাজ করবে না। PIN নিতে যোগাযোগ করুন:</p><p><b>আল্লাহু শাফি আল-ইহসান রুক‌ইয়াহ্ ও তদবির সেন্টার</b><br>পরিচালক, রাক্বি ও মুদাব্বির মুফতী উসমান গণি<br>সিরাজদিখান, মুন্সীগঞ্জ<br>০১৮৭৯৯৫৫৩৪৪</p><p class="formula"><b>আপনার ডিভাইসের আবেদন কোড:</b><br><span class="big" id="requestCodeOut">—</span><br><span class="note">এই কোডটি পরিচালককে WhatsApp/ফোনে পাঠান। পরিচালক আপনার জন্য PIN দেবেন।</span></p><div style="display:flex;gap:7px"><input id="pinInput" type="password" maxlength="64" placeholder="পরিচালকের দেওয়া PIN লিখুন"><button type="button" class="btn soft" onclick="togglePin('pinInput',this)">👁️</button></div><button class="btn primary" onclick="activateApp()">অ্যাক্টিভেট করুন</button><p id="pinMsg" class="note"></p><button class="btn gold" onclick="ownerPanel()">🔐 মালিক হিসেবে সক্রিয় করুন</button><div id="lockOwnerBox" class="card hide" style="text-align:left;margin-top:12px"><h3 style="color:#0b6044">🔐 মালিক অ্যাক্টিভেশন</h3><p class="note">এটি শুধু অ্যাপের মালিক/পরিচালকের জন্য। মালিকের PIN দিন।</p><div style="display:flex;gap:7px"><input id="ownerPinInput" type="password" maxlength="64" placeholder="মালিকের PIN লিখুন"><button type="button" class="btn soft" onclick="togglePin('ownerPinInput',this)">👁️</button></div><button class="btn primary" onclick="activateOwner()">মালিক হিসেবে অ্যাক্টিভেট করুন</button><p id="ownerMsg" class="note"></p><hr><p class="note">এই ডিভাইসের আবেদন কোড:</p><input id="ownerRequestCode" readonly><button class="btn soft" onclick="copyRequestCode()">📋 আবেদন কোড কপি করুন</button><p class="note">অন্য ব্যবহারকারীর আবেদন কোড দিলে তার PIN তৈরি করা যাবে:</p><input id="userCodeInput" maxlength="32" placeholder="ব্যবহারকারীর আবেদন কোড লিখুন"><button class="btn primary" onclick="generateLockUserPin()">ব্যবহারকারীর PIN তৈরি করুন</button><div id="lockPinOut" class="formula hide"></div></div></div></div>
 <nav class="bottom"><button onclick="go('home')">🏠<br>হোম</button><button onclick="go('calc')">🧮<br>হিসাব</button><button onclick="go('history')">📚<br>ইতিহাস</button><button onclick="go('about')">ℹ️<br>তথ্য</button></nav>
 <script>
 const A={'ا':1,'أ':1,'إ':1,'آ':1,'ء':1,'ب':2,'ج':3,'د':4,'ه':5,'ة':5,'و':6,'ز':7,'ح':8,'ط':9,'ي':10,'ى':10,'ك':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000};
 const C={459:['قمر','সোমবার'],645:['مریخ','মঙ্গলবার'],941:['عطارد','বুধবার'],1416:['مشتري','বৃহস্পতিবার'],593:['زهره','শুক্রবার'],777:['زحل','শনিবার'],1164:['شمس','রবিবার']};
 const F={1:'জিন',2:'যাদু',3:'বদনজর',4:'তাবিজ পুতানো / আম্মার জিন',5:'চালানের',6:'দেওয়ের নজর',0:'শারীরিক সমস্যা'};
-const G={আতশী:'ا ه ط م ف ش ذ', 'বায়ী/বাদী':'ب و ي ن ص ت ض',আবী:'ج ز ك س ق ث ظ',খাকী:'د ح ل ع ر خ غ'};
+const G={আতশী:'ا ه ط م ف ش ذ','বায়ী/বাদী':'ب و ي ن ص ت ض',আবী:'ج ز ك س ق ث ظ',খাকী:'د ح ل ع ر خ غ'};
+
 const TR={
-'অ':'ا','আ':'ا','ই':'ي','ঈ':'ي','উ':'و','ঊ':'و','ঋ':'ر','এ':'ي','ঐ':'ي','ও':'و','ঔ':'و','ক':'ك','খ':'خ','গ':'ج','ঘ':'غ','ঙ':'ن','চ':'ج','ছ':'ش','জ':'ج','ঝ':'ز','ঞ':'ن','ট':'ط','ঠ':'ط','ড':'د','ঢ':'ض','ণ':'ن','ত':'ت','থ':'ث','দ':'د','ধ':'ض','ন':'ن','প':'ب','ফ':'ف','ব':'ب','ভ':'ب','ম':'م','য':'ي','য়':'ي','র':'ر','ল':'ل','শ':'ش','ষ':'ش','স':'س','হ':'ه','ড়':'ر','ঢ়':'ر','ক্ষ':'ك','জ্ঞ':'ج','ং':'ن','ঃ':'ه','ঁ':'ن',
+'অ':'ا','আ':'ا','ই':'ي','ঈ':'ي','উ':'و','ঊ':'و','ঋ':'ر','এ':'ي','ঐ':'ي','ও':'و','ঔ':'و',
+'ক':'ك','খ':'خ','গ':'ج','ঘ':'غ','ঙ':'ن','চ':'ج','ছ':'ش','জ':'ج','ঝ':'ز','ঞ':'ن','ট':'ط','ঠ':'ط','ড':'د','ঢ':'ض','ণ':'ن',
+'ত':'ت','থ':'ث','দ':'د','ধ':'ض','ন':'ن','প':'ب','ফ':'ف','ব':'ب','ভ':'ب','ম':'م','য':'ي','য়':'ي','র':'ر','ল':'ل','শ':'ش','ষ':'ش','স':'س','হ':'ه','ড়':'ر','ঢ়':'ر','ক্ষ':'ك','জ্ঞ':'ج','ং':'ن','ঃ':'ه','ঁ':'ن',
 'a':'ا','b':'ب','c':'ك','d':'د','e':'ي','f':'ف','g':'ج','h':'ه','i':'ي','j':'ج','k':'ك','l':'ل','m':'م','n':'ن','o':'و','p':'ب','q':'ق','r':'ر','s':'س','t':'ت','u':'و','v':'ف','w':'و','x':'كس','y':'ي','z':'ز',
 'ا':'ا','أ':'ا','إ':'ا','آ':'ا','ء':'ء','ب':'ب','پ':'ب','ت':'ت','ٹ':'ط','ث':'ث','ج':'ج','چ':'ج','ح':'ح','خ':'خ','د':'د','ڈ':'د','ذ':'ذ','ر':'ر','ڑ':'ر','ز':'ز','ژ':'ز','س':'س','ش':'ش','ص':'ص','ض':'ض','ط':'ط','ظ':'ظ','ع':'ع','غ':'غ','ف':'ف','ق':'ق','ک':'ك','گ':'ج','ل':'ل','م':'م','ن':'ن','ں':'ن','و':'و','ہ':'ه','ھ':'ه','ی':'ي','ے':'ي'
 };
-function toArabic(s){s=String(s||'').toLowerCase().normalize('NFKC');let out='';for(let c of [...s]){if(A[c]){out+=c;continue} if(TR[c])out+=TR[c];}return out}
-function val(s){return [...toArabic(s)].reduce((t,c)=>t+(A[c]||0),0)}
-function ds(d){return [...d.replaceAll('-','')].reduce((a,x)=>a+(+x),0)}
-function bn(n){return String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d])}
-function go(id){['home','patient','calc','mood','history','report','about'].forEach(x=>document.getElementById(x).classList.toggle('hide',x!==id));if(id==='history')renderHistory();if(id==='report')loadLastReport()}
-function syncPatient(){cp.value=p.value;cm.value=m.value;cage.value=age.value;cdate.value=date.value;updateSetara()}
-function ageFromBirth(v){if(!v)return '';let b=new Date(v+'T00:00:00'),t=new Date();let a=t.getFullYear()-b.getFullYear();if(t.getMonth()<b.getMonth()||(t.getMonth()===b.getMonth()&&t.getDate()<b.getDate()))a--;return Math.max(0,a)}
-function updateAge(){let a=ageFromBirth(birth.value);if(a!=='')age.value=a}
-function weekdayKey(d){if(!d)return null;let x=new Date(d+'T00:00:00');return ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'][x.getDay()]}
-function updateSetara(){let day=weekdayKey(cdate.value);if(!day)return;let map={'সোমবার':459,'মঙ্গলবার':645,'বুধবার':941,'বৃহস্পতিবার':1416,'শুক্রবার':593,'শনিবার':777,'রবিবার':1164};setara.value=String(map[day]);setaraHint.textContent='হিসাবের তারিখ অনুযায়ী সেতারা স্বয়ংক্রিয়ভাবে নির্বাচিত হয়েছে: '+day+' — '+C[map[day]][0]+' — '+bn(map[day])}
-function calc(){syncPatient();let p=cp.value.trim(),m=cm.value.trim(),ag=+cage.value||0,d=cdate.value,s=+setara.value||0;if(!p||!m){alert('রোগীর নাম ও মায়ের নাম দিন');return}if(!d){alert('হিসাবের তারিখ দিন');return}if(ag<0){alert('বয়স সঠিকভাবে দিন');return}let ap=toArabic(p),am=toArabic(m),pa=val(p),ma=val(m),dn=ds(d),total=pa+ma+s+ag+dn,rem=total%7,result=F[rem];if(rem===0)result=F[0];let c=C[s];let html='<h2>ফলাফল</h2><p>রোগীর নাম: <b>'+esc(p)+'</b><br>আরবি রূপ: <b>'+esc(ap)+'</b><br>মায়ের নাম: <b>'+esc(m)+'</b><br>আরবি রূপ: <b>'+esc(am)+'</b><br>বয়স: '+bn(ag)+'<br>হিসাবের তারিখ: '+esc(d)+'</p><div class="formula">রোগীর আবজাদ: '+bn(pa)+'<br>মায়ের আবজাদ: '+bn(ma)+'<br>সেতারা: '+c[0]+' — '+bn(s)+'<br>তারিখের সংখ্যা: '+bn(dn)+'<br><b>মোট = '+bn(total)+'</b><br>মোট ÷ ৭ → ভাগশেষ: <span class="big">'+bn(rem===0?0:rem)+'</span></div><p>ফলাফল: <span class="big">'+result+'</span></p><p class="note">এটি নির্ধারিত হিসাবের ফল; এটি চিকিৎসাবিজ্ঞানের রোগ-নির্ণয়ের বিকল্প নয়। ৭৩৭ কোনো বিয়োগের সংখ্যা নয়।</p>';res.innerHTML=html;res.classList.remove('hide');reportBox.innerHTML=html;save({p,m,birth:birth.value||'',ag,d,pa,ma,s,dn,total,rem,result,setara:c[0],ap,am});go('calc')}
-function save(x){let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]');h.unshift({time:Date.now(),...x});localStorage.setItem('hajirat_history',JSON.stringify(h.slice(0,100)));localStorage.setItem('hajirat_last',JSON.stringify(x))}
-function renderHistory(){let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]');hist.innerHTML=h.length?h.map((x,i)=>'<div class="history-item"><b>'+esc(x.p||'—')+'</b> — মায়ের নাম: '+esc(x.m||'—')+'<br>তারিখ: '+esc(x.d||'—')+'<br>ফলাফল: <span class="pill">'+esc(x.result||'—')+'</span><br><button class="btn soft" onclick="openHistory('+i+')">রিপোর্ট দেখুন</button></div>').join(''):'কোনো হিসাব সংরক্ষিত নেই।'}
-function openHistory(i){let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]'),x=h[i];if(!x)return;reportBox.innerHTML='<h2>📋 পুরোনো রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(x.p)+'</b><br>মায়ের নাম: <b>'+esc(x.m)+'</b><br>জন্ম তারিখ: '+esc(x.birth||'—')+'<br>বয়স: '+bn(x.ag)+'<br>হিসাবের তারিখ: '+esc(x.d)+'</p><div class="formula">রোগীর আবজাদ: '+bn(x.pa)+'<br>মায়ের আবজাদ: '+bn(x.ma)+'<br>সেতারা: '+x.setara+' — '+bn(x.s)+'<br>তারিখের সংখ্যা: '+bn(x.dn)+'<br>মোট: <b>'+bn(x.total)+'</b><br>ভাগশেষ: <span class="big">'+bn(x.rem)+'</span></div><p>ফলাফল: <span class="big">'+esc(x.result)+'</span></p>';go('report')}
-function clearHistory(){if(confirm('সব পুরোনো হিসাব মুছে ফেলবেন?')){localStorage.removeItem('hajirat_history');renderHistory()}}
-function loadLastReport(){let x=JSON.parse(localStorage.getItem('hajirat_last')||'null');if(!x)return;reportBox.innerHTML='<h2>📋 সর্বশেষ রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(x.p||'—')+'</b><br>মায়ের নাম: <b>'+esc(x.m||'—')+'</b><br>জন্ম তারিখ: '+esc(x.birth||'—')+'<br>বয়স: '+bn(x.ag||0)+'<br>হিসাবের তারিখ: '+esc(x.d||'—')+'</p><div class="formula">রোগীর আবজাদ: '+bn(x.pa||0)+'<br>মায়ের আবজাদ: '+bn(x.ma||0)+'<br>সেতারা: '+esc(x.setara||'—')+' — '+bn(x.s||0)+'<br>তারিখের সংখ্যা: '+bn(x.dn||0)+'<br><b>মোট = '+bn(x.total||0)+'</b><br>মোট ÷ ৭ → ভাগশেষ: <span class="big">'+bn(x.rem||0)+'</span></div><p>ফলাফল: <span class="big">'+esc(x.result||'—')+'</span></p><p class="note">এটি নির্ধারিত হিসাবের ফল; এটি চিকিৎসাবিজ্ঞানের রোগ-নির্ণয়ের বিকল্প নয়।</p>'}
 
-function temperament(s){let out=[];for(let k in G){if([...toArabic(s)].some(c=>G[k].includes(c)))out.push(k)}return out.length?out.join(' / '):'নির্ধারণ করা যায়নি'}
-function shared(a,b){a=toArabic(a);b=toArabic(b);let x=[...a].filter(c=>A[c]&&b.includes(c));return [...new Set(x)].join(' ')||'কোনো অভিন্ন হরফ নেই'}
-function moodCalc(){let a=n1.value.trim(),b=n2.value.trim();if(!a||!b){alert('দুই ব্যক্তির নাম লিখুন');return}let ta=sel1.value||temperament(a),tb=sel2.value||temperament(b);let aa=toArabic(a),bb=toArabic(b);let taList=ta.split(' / ').filter(Boolean),tbList=tb.split(' / ').filter(Boolean);let temperamentMatch=taList.some(x=>tbList.includes(x));let common=[...new Set([...aa].filter(c=>A[c]&&bb.includes(c)))];let letterMatch=common.length>0;let finalLove=temperamentMatch||letterMatch;let verdict=finalLove?'❤️ মোহাব্বত':'💔 বিচ্ছেদ';let basis=[];if(temperamentMatch)basis.push('মেজাজে মেজাজে মিল আছে');if(letterMatch)basis.push('নামের মেজাজের হরফে অন্তত একটি মিল আছে');if(!basis.length)basis.push('মেজাজে মেজাজে মিল নেই এবং নামের মেজাজের হরফেও কোনো মিল নেই');moodres.innerHTML='<h2>ফলাফল</h2><p>প্রথম ব্যক্তির আরবি রূপ: <b>'+aa+'</b></p><p>দ্বিতীয় ব্যক্তির আরবি রূপ: <b>'+bb+'</b></p><p>প্রথম ব্যক্তির মেজাজ: <span class="big">'+ta+'</span></p><p>দ্বিতীয় ব্যক্তির মেজাজ: <span class="big">'+tb+'</span></p><p>মিল থাকা হরফ: <b>'+(common.join(' ')||'কোনো অভিন্ন হরফ নেই')+'</b></p><p>মেজাজের সম্পর্ক: <b>'+(temperamentMatch?'মেজাজে মেজাজে মিল আছে':'মেজাজে মেজাজে মিল নেই')+'</b></p><p>হরফের সম্পর্ক: <b>'+(letterMatch?'অন্তত একটি হরফে মিল আছে':'কোনো হরফে মিল নেই')+'</b></p><p>মিলের ভিত্তি: <b>'+basis.join(' এবং ')+'</b></p><div class="formula"><strong>'+verdict+'</strong><br><span class="note">নিয়ম: মেজাজে মিল অথবা নামের মেজাজের হরফে যেকোনো একটি মিল থাকলেই মোহাব্বত। কোনো দিকেই মিল না থাকলে বিচ্ছেদ। সব হরফে মিল থাকা আবশ্যক নয়।</span></div><p class="note">এখানে কোনো ৭ দিয়ে ভাগ বা ভাগশেষ ব্যবহার করা হয়নি।</p>';moodres.classList.remove('hide')}
+function toArabic(s){
+ s=String(s||'').toLowerCase().normalize('NFKC');
+ let out='';
+ for(let c of [...s]){
+  if(A[c]){out+=c;continue}
+  if(TR[c])out+=TR[c];
+ }
+ return out
+}
+
+function val(s){
+ return [...toArabic(s)].reduce((t,c)=>t+(A[c]||0),0)
+}
+
+function ds(d){
+ return [...d.replaceAll('-','')].reduce((a,x)=>a+(+x),0)
+}
+
+function bn(n){
+ return String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d])
+}
+
+function go(id,fromBack){
+ ['home','patient','calc','mood','history','report','about'].forEach(x=>document.getElementById(x).classList.toggle('hide',x!==id));
+ if(id==='history')renderHistory();
+ if(id==='report')loadLastReport();
+ if(!fromBack){history.pushState({page:id},'', '#'+id)}
+}
+
+function handleAndroidBack(){
+ if(location.hash && location.hash!=='#home'){
+  history.back();
+  return true
+ }
+ return false
+}
+
+window.addEventListener('popstate',()=>{
+ let id=(location.hash||'#home').slice(1);
+ if(!['home','patient','calc','mood','history','report','about'].includes(id))id='home';
+ go(id,true)
+})
+
+function syncPatient(){
+ cp.value=p.value;
+ cm.value=m.value;
+ cage.value=age.value;
+ cdate.value=date.value;
+ updateSetara()
+}
+
+function ageFromBirth(v){
+ if(!v)return '';
+ let b=new Date(v+'T00:00:00'),t=new Date();
+ let a=t.getFullYear()-b.getFullYear();
+ if(t.getMonth()<b.getMonth()||(t.getMonth()===b.getMonth()&&t.getDate()<b.getDate()))a--;
+ return Math.max(0,a)
+}
+
+function updateAge(){
+ let a=ageFromBirth(birth.value);
+ if(a!=='')age.value=a
+}
+
+function weekdayKey(d){
+ if(!d)return null;
+ let x=new Date(d+'T00:00:00');
+ return ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'][x.getDay()]
+}
+
+function updateSetara(){
+ let day=weekdayKey(cdate.value);
+ if(!day)return;
+ let map={'সোমবার':459,'মঙ্গলবার':645,'বুধবার':941,'বৃহস্পতিবার':1416,'শুক্রবার':593,'শনিবার':777,'রবিবার':1164};
+ setara.value=String(map[day]);
+ setaraHint.textContent='হিসাবের তারিখ অনুযায়ী সেতারা স্বয়ংক্রিয়ভাবে নির্বাচিত হয়েছে: '+day+' — '+C[map[day]][0]+' — '+bn(map[day])
+}
+
+function calc(){
+ syncPatient();
+ let p=cp.value.trim(),m=cm.value.trim(),ag=+cage.value||0,d=cdate.value,s=+setara.value||0;
+ if(!p||!m){alert('রোগীর নাম ও মায়ের নাম দিন');return}
+ if(!d){alert('হিসাবের তারিখ দিন');return}
+ if(ag<0){alert('বয়স সঠিকভাবে দিন');return}
+
+ let ap=toArabic(p),am=toArabic(m),pa=val(p),ma=val(m),dn=ds(d);
+ let total=pa+ma+s+ag+dn,rem=total%7,result=F[rem];
+ if(rem===0)result=F[0];
+
+ let c=C[s];
+
+ let html='<h2>ফলাফল</h2><p>রোগীর নাম: <b>'+esc(p)+'</b><br>আরবি রূপ: <b>'+esc(ap)+'</b><br>মায়ের নাম: <b>'+esc(m)+'</b><br>আরবি রূপ: <b>'+esc(am)+'</b><br>বয়স: '+bn(ag)+'<br>হিসাবের তারিখ: '+esc(d)+'</p><div class="formula">রোগীর আবজাদ: '+bn(pa)+'<br>মায়ের আবজাদ: '+bn(ma)+'<br>সেতারা: '+c[0]+' — '+bn(s)+'<br>তারিখের সংখ্যা: '+bn(dn)+'<br><b>মোট = '+bn(total)+'</b><br>মোট ÷ ৭ → ভাগশেষ: <span class="big">'+bn(rem===0?0:rem)+'</span></div><p>ফলাফল: <span class="big">'+result+'</span></p><p class="note">এটি নির্ধারিত হিসাবের ফল; এটি চিকিৎসাবিজ্ঞানের রোগ-নির্ণয়ের বিকল্প নয়। ৭৩৭ কোনো বিয়োগের সংখ্যা নয়।</p>';
+
+ res.innerHTML=html;
+ res.classList.remove('hide');
+ reportBox.innerHTML=html;
+
+ save({p,m,birth:birth.value||'',ag,d,pa,ma,s,dn,total,rem,result,setara:c[0],ap,am});
+ go('calc')
+}
+
+function save(x){
+ let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]');
+ h.unshift({time:Date.now(),...x});
+ localStorage.setItem('hajirat_history',JSON.stringify(h.slice(0,100)));
+ localStorage.setItem('hajirat_last',JSON.stringify(x))
+}
+
+function renderHistory(){
+ let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]');
+ hist.innerHTML=h.length?h.map((x,i)=>'<div class="history-item"><b>'+esc(x.p||'—')+'</b> — মায়ের নাম: '+esc(x.m||'—')+'<br>তারিখ: '+esc(x.d||'—')+'<br>ফলাফল: <span class="pill">'+esc(x.result||'—')+'</span><br><button class="btn soft" onclick="openHistory('+i+')">রিপোর্ট দেখুন</button></div>').join(''):'কোনো হিসাব সংরক্ষিত নেই।'
+}
+
+function openHistory(i){
+ let h=JSON.parse(localStorage.getItem('hajirat_history')||'[]'),x=h[i];
+ if(!x)return;
+
+ reportBox.innerHTML='<h2>📋 পুরোনো রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(x.p)+'</b><br>মায়ের নাম: <b>'+esc(x.m)+'</b><br>জন্ম তারিখ: '+esc(x.birth||'—')+'<br>বয়স: '+bn(x.ag)+'<br>হিসাবের তারিখ: '+esc(x.d)+'</p><div class="formula">রোগীর আবজাদ: '+bn(x.pa)+'<br>মায়ের আবজাদ: '+bn(x.ma)+'<br>সেতারা: '+x.setara+' — '+bn(x.s)+'<br>তারিখের সংখ্যা: '+bn(x.dn)+'<br>মোট: <b>'+bn(x.total)+'</b><br>ভাগশেষ: <span class="big">'+bn(x.rem)+'</span></div><p>ফলাফল: <span class="big">'+esc(x.result)+'</span></p>';
+ go('report')
+}
+
+function clearHistory(){
+ if(confirm('সব পুরোনো হিসাব মুছে ফেলবেন?')){
+  localStorage.removeItem('hajirat_history');
+  renderHistory()
+ }
+}
+
+function loadLastReport(){
+ let x=JSON.parse(localStorage.getItem('hajirat_last')||'null');
+ if(!x)return;
+
+ reportBox.innerHTML='<h2>📋 সর্বশেষ রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(x.p||'—')+'</b><br>মায়ের নাম: <b>'+esc(x.m||'—')+'</b><br>জন্ম তারিখ: '+esc(x.birth||'—')+'<br>বয়স: '+bn(x.ag||0)+'<br>হিসাবের তারিখ: '+esc(x.d||'—')+'</p><div class="formula">রোগীর আবজাদ: '+bn(x.pa||0)+'<br>মায়ের আবজাদ: '+bn(x.ma||0)+'<br>সেতারা: '+esc(x.setara||'—')+' — '+bn(x.s||0)+'<br>তারিখের সংখ্যা: '+bn(x.dn||0)+'<br><b>মোট = '+bn(x.total||0)+'</b><br>মোট ÷ ৭ → ভাগশেষ: <span class="big">'+bn(x.rem||0)+'</span></div><p>ফলাফল: <span class="big">'+esc(x.result||'—')+'</span></p><p class="note">এটি নির্ধারিত হিসাবের ফল; এটি চিকিৎসাবিজ্ঞানের রোগ-নির্ণয়ের বিকল্প নয়।</p>'
+}
+
+function temperament(s){
+ let out=[];
+ for(let k in G){
+  if([...toArabic(s)].some(c=>G[k].includes(c)))out.push(k)
+ }
+ return out.length?out.join(' / '):'নির্ধারণ করা যায়নি'
+}
+
+function shared(a,b){
+ a=toArabic(a);b=toArabic(b);
+ let x=[...a].filter(c=>A[c]&&b.includes(c));
+ return [...new Set(x)].join(' ')||'কোনো অভিন্ন হরফ নেই'
+}
+
+function moodCalc(){
+ let a=n1.value.trim(),b=n2.value.trim();
+ if(!a||!b){alert('দুই ব্যক্তির নাম লিখুন');return}
+
+ let ta=sel1.value||temperament(a),tb=sel2.value||temperament(b);
+ let aa=toArabic(a),bb=toArabic(b);
+ let taList=ta.split(' / ').filter(Boolean),tbList=tb.split(' / ').filter(Boolean);
+ let temperamentMatch=taList.some(x=>tbList.includes(x));
+ let common=[...new Set([...aa].filter(c=>A[c]&&bb.includes(c)))];
+ let letterMatch=common.length>0;
+ let finalLove=temperamentMatch||letterMatch;
+ let verdict=finalLove?'❤️ মোহাব্বত':'💔 বিচ্ছেদ';
+ let basis=[];
+
+ if(temperamentMatch)basis.push('মেজাজে মেজাজে মিল আছে');
+ if(letterMatch)basis.push('নামের মেজাজের হরফে অন্তত একটি মিল আছে');
+ if(!basis.length)basis.push('মেজাজে মেজাজে মিল নেই এবং নামের মেজাজের হরফেও কোনো মিল নেই');
+
+ moodres.innerHTML='<h2>ফলাফল</h2><p>প্রথম ব্যক্তির আরবি রূপ: <b>'+aa+'</b></p><p>দ্বিতীয় ব্যক্তির আরবি রূপ: <b>'+bb+'</b></p><p>প্রথম ব্যক্তির মেজাজ: <span class="big">'+ta+'</span></p><p>দ্বিতীয় ব্যক্তির মেজাজ: <span class="big">'+tb+'</span></p><p>মিল থাকা হরফ: <b>'+(common.join(' ')||'কোনো অভিন্ন হরফ নেই')+'</b></p><p>মেজাজের সম্পর্ক: <b>'+(temperamentMatch?'মেজাজে মেজাজে মিল আছে':'মেজাজে মেজাজে মিল নেই')+'</b></p><p>হরফের সম্পর্ক: <b>'+(letterMatch?'অন্তত একটি হরফে মিল আছে':'কোনো হরফে মিল নেই')+'</b></p><p>মিলের ভিত্তি: <b>'+basis.join(' এবং ')+'</b></p><div class="formula"><strong>'+verdict+'</strong><br><span class="note">নিয়ম: মেজাজে মিল অথবা নামের মেজাজের হরফে যেকোনো একটি মিল থাকলেই মোহাব্বত। কোনো দিকেই মিল না থাকলে বিচ্ছেদ। সব হরফে মিল থাকা আবশ্যক নয়।</span></div><p class="note">এখানে কোনো ৭ দিয়ে ভাগ বা ভাগশেষ ব্যবহার করা হয়নি।</p>';
+ moodres.classList.remove('hide')
+}
+
 const APP_SHARE_LINK='https://play.google.com/store/apps/details?id=com.sohojhajirat.app';
+
 // প্রকৃত ব্যবহারের PIN মালিকের কাছ থেকে সেট করতে হবে।
 const OWNER_PIN='shohojhajiratbyosman';
+
 const DEVICE_ID=(window.AndroidDevice&&AndroidDevice.getDeviceId)?AndroidDevice.getDeviceId():'web-device';
-function hashCode(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36).toUpperCase()}
-function requestCode(){return hashCode('REQ|'+DEVICE_ID+'|SOHOJ-HAJIRAT').slice(0,10)}
-function deviceCode(id){return hashCode(OWNER_PIN+'|PIN|'+id+'|SOHOJ-HAJIRAT').slice(0,10)}
-function activateApp(){let p=(pinInput.value||'').trim().toUpperCase();let expected=deviceCode(DEVICE_ID);if(p===expected){localStorage.setItem('hajirat_activation','1');localStorage.setItem('hajirat_device',DEVICE_ID);lockScreen.style.display='none'}else pinMsg.textContent='PIN সঠিক নয়। নিজের বানানো বা অন্য ডিভাইসের PIN গ্রহণ করা হবে না। সঠিক PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করুন।'}
-function ownerPanel(){lockOwnerBox.classList.toggle('hide');ownerRequestCode.value=requestCode();ownerPinInput.focus()}
-function activateOwner(){let p=(ownerPinInput.value||'').trim();if(p===OWNER_PIN){localStorage.setItem('hajirat_activation','1');localStorage.setItem('hajirat_device',DEVICE_ID);lockScreen.style.display='none'}else ownerMsg.textContent='মালিকের PIN সঠিক নয়। সঠিক মালিক PIN দিন।'}
-function copyRequestCode(){let code=requestCode();ownerRequestCode.value=code;if(navigator.clipboard){navigator.clipboard.writeText(code).then(()=>{ownerMsg.textContent='আবেদন কোড কপি হয়েছে: '+code}).catch(()=>{ownerMsg.textContent='আবেদন কোড: '+code})}else{ownerRequestCode.select();document.execCommand('copy');ownerMsg.textContent='আবেদন কোড কপি হয়েছে: '+code}}
-function generateLockUserPin(){let id=(userCodeInput.value||'').trim().toUpperCase();if(!id){lockPinOut.innerHTML='<span class=\"note\">প্রথমে ব্যবহারকারীর আবেদন কোড লিখুন।</span>';lockPinOut.classList.remove('hide');return}let pin=deviceCode(id);lockPinOut.innerHTML='<b>ব্যবহারকারীকে দেওয়ার PIN:</b><br><span class=\"big\">'+pin+'</span><br><span class=\"note\">এই PIN শুধু ওই আবেদন কোডের ডিভাইসে কাজ করবে।</span>';lockPinOut.classList.remove('hide')}
-function shareApp(){let text='সহজ হাজিরাত — রুক‌ইয়াহ ও তদবির সহায়ক\n'+APP_SHARE_LINK;if(window.AndroidShare&&AndroidShare.share)AndroidShare.share(text);else if(navigator.share)navigator.share({title:'সহজ হাজিরাত',text:'সহজ হাজিরাত অ্যাপ',url:APP_SHARE_LINK}).catch(()=>{});else{navigator.clipboard?.writeText(APP_SHARE_LINK);alert('অ্যাপের শেয়ার লিংক কপি হয়েছে: '+APP_SHARE_LINK)}}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-if(document.getElementById('requestCodeOut'))document.getElementById('requestCodeOut').textContent=requestCode();
+
+function hashCode(s){
+ let h=2166136261;
+ for(let i=0;i<s.length;i++){
+  h^=s.charCodeAt(i);
+  h=Math.imul(h,16777619)
+ }
+ return (h>>>0).toString(36).toUpperCase()
+}
+
+function requestCode(){
+ return hashCode('REQ|'+DEVICE_ID+'|SOHOJ-HAJIRAT').slice(0,10)
+}
+
+function deviceCode(id){
+ return hashCode(OWNER_PIN+'|PIN|'+id+'|SOHOJ-HAJIRAT').slice(0,10)
+}
+
+function activateApp(){
+ let p=(pinInput.value||'').trim().toUpperCase();
+ let expected=deviceCode(DEVICE_ID);
+
+ if(p===expected){
+  localStorage.setItem('hajirat_activation','1');
+  localStorage.setItem('hajirat_device',DEVICE_ID);
+  lockScreen.style.display='none'
+ }else{
+  pinMsg.textContent='PIN সঠিক নয়। নিজের বানানো বা অন্য ডিভাইসের PIN গ্রহণ করা হবে না। সঠিক PIN নিতে পরিচালকের সঙ্গে যোগাযোগ করুন।'
+ }
+}
+
+function ownerPanel(){
+ lockOwnerBox.classList.toggle('hide');
+ ownerRequestCode.value=requestCode();
+ ownerPinInput.focus()
+}
+
+function activateOwner(){
+ let p=(ownerPinInput.value||'').trim();
+
+ if(p===OWNER_PIN){
+  localStorage.setItem('hajirat_activation','1');
+  localStorage.setItem('hajirat_device',DEVICE_ID);
+  lockScreen.style.display='none'
+ }else{
+  ownerMsg.textContent='মালিকের PIN সঠিক নয়। সঠিক মালিক PIN দিন।'
+ }
+}
+
+function copyRequestCode(){
+ let code=requestCode();
+ ownerRequestCode.value=code;
+
+ if(navigator.clipboard){
+  navigator.clipboard.writeText(code)
+  .then(()=>{ownerMsg.textContent='আবেদন কোড কপি হয়েছে: '+code})
+  .catch(()=>{ownerMsg.textContent='আবেদন কোড: '+code})
+ }else{
+  ownerRequestCode.select();
+  document.execCommand('copy');
+  ownerMsg.textContent='আবেদন কোড কপি হয়েছে: '+code
+ }
+}
+
+function generateLockUserPin(){
+ let id=(userCodeInput.value||'').trim().toUpperCase();
+
+ if(!id){
+  lockPinOut.innerHTML='<span class="note">প্রথমে ব্যবহারকারীর আবেদন কোড লিখুন।</span>';
+  lockPinOut.classList.remove('hide');
+  return
+ }
+
+ let pin=deviceCode(id);
+
+ lockPinOut.innerHTML='<b>ব্যবহারকারীকে দেওয়ার PIN:</b><br><span class="big">'+pin+'</span><br><span class="note">এই PIN শুধু ওই আবেদন কোডের ডিভাইসে কাজ করবে।</span>';
+ lockPinOut.classList.remove('hide')
+}
+
+function shareApp(){
+ let text='সহজ হাজিরাত — রুক‌ইয়াহ ও তদবির সহায়ক\n'+APP_SHARE_LINK;
+
+ if(window.AndroidShare&&AndroidShare.share)
+  AndroidShare.share(text);
+ else if(navigator.share)
+  navigator.share({title:'সহজ হাজিরাত',text:'সহজ হাজিরাত অ্যাপ',url:APP_SHARE_LINK}).catch(()=>{});
+ else{
+  navigator.clipboard?.writeText(APP_SHARE_LINK);
+  alert('অ্যাপের শেয়ার লিংক কপি হয়েছে: '+APP_SHARE_LINK)
+ }
+}
+
+function esc(s){
+ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
+}
+
+function togglePin(id,btn){
+ let el=document.getElementById(id);
+ if(!el)return;
+ el.type=el.type==='password'?'text':'password';
+ btn.textContent=el.type==='password'?'👁️ দেখুন':'🙈 লুকান'
+}
+
+if(!location.hash)history.replaceState({page:'home'},'', '#home');
+
+if(document.getElementById('requestCodeOut'))
+ document.getElementById('requestCodeOut').textContent=requestCode();
+
 birth.addEventListener('change',()=>{updateAge();});
-date.addEventListener('change',()=>{cdate.value=date.value;updateSetara();});
+
+date.addEventListener('change',()=>{
+ cdate.value=date.value;
+ updateSetara();
+});
+
 cdate.addEventListener('change',updateSetara);
 
-if(localStorage.getItem('hajirat_activation')==='1' && localStorage.getItem('hajirat_device')===DEVICE_ID)lockScreen.style.display='none';
-date.value=new Date().toISOString().slice(0,10);cdate.value=date.value;updateSetara();let last=JSON.parse(localStorage.getItem('hajirat_last')||'null');if(last){reportBox.innerHTML='<h2>সর্বশেষ রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(last.p)+'</b><br>মায়ের নাম: <b>'+esc(last.m)+'</b><br>ফলাফল: <span class="big">'+esc(last.result)+'</span></p>'}
+if(localStorage.getItem('hajirat_activation')==='1' && localStorage.getItem('hajirat_device')===DEVICE_ID)
+ lockScreen.style.display='none';
+
+date.value=new Date().toISOString().slice(0,10);
+cdate.value=date.value;
+updateSetara();
+
+go((location.hash||'#home').slice(1),true);
+
+let last=JSON.parse(localStorage.getItem('hajirat_last')||'null');
+
+if(last){
+ reportBox.innerHTML='<h2>সর্বশেষ রিপোর্ট</h2><p>রোগীর নাম: <b>'+esc(last.p)+'</b><br>মায়ের নাম: <b>'+esc(last.m)+'</b><br>ফলাফল: <span class="big">'+esc(last.result)+'</span></p>'
+}
 </script></body></html>
